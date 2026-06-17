@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Complaint Management</title>
+</head>
+<body>
+
+<h1>Smart Complaint Management System</h1>
+
+<form id="complaintForm">
+    <input type="text" id="name" placeholder="Name"><br><br>
+
+    <input type="text" id="category" placeholder="Category"><br><br>
+
+    <textarea id="description" placeholder="Description"></textarea><br><br>
+
+    <button type="submit">Submit Complaint</button>
+</form>
+
+<script>
+document.getElementById("complaintForm").addEventListener("submit", async function(e){
+
+    e.preventDefault();
+
+    await fetch("/complaints",{
+        method:"POST",
+        headers:{
+            "Content-Type":"application/json"
+        },
+        body:JSON.stringify({
+            name:document.getElementById("name").value,
+            category:document.getElementById("category").value,
+            description:document.getElementById("description").value
+        })
+    });
+
+    alert("Complaint Submitted");
+});
+</script>
+</body>
+</html>
