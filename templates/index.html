@@ -1,41 +1,121 @@
+```html
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>Complaint Management</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Smart Complaint Management System</title>
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Segoe UI',sans-serif;
+}
+
+body{
+    height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    background:linear-gradient(135deg,#0f172a,#1e3c72,#2563eb);
+}
+
+.container{
+    width:700px;
+    text-align:center;
+    background:white;
+    padding:50px;
+    border-radius:20px;
+    box-shadow:0 10px 40px rgba(0,0,0,0.3);
+}
+
+h1{
+    color:#1e3c72;
+    margin-bottom:15px;
+    font-size:38px;
+}
+
+p{
+    color:#555;
+    margin-bottom:30px;
+    line-height:1.8;
+}
+
+.button-container{
+    display:flex;
+    justify-content:center;
+    gap:25px;
+}
+
+.btn{
+    padding:15px 35px;
+    border:none;
+    border-radius:10px;
+    color:white;
+    font-size:18px;
+    cursor:pointer;
+    text-decoration:none;
+    transition:0.3s;
+}
+
+.user-btn{
+    background:#2563eb;
+}
+
+.user-btn:hover{
+    background:#1d4ed8;
+}
+
+.admin-btn{
+    background:#dc2626;
+}
+
+.admin-btn:hover{
+    background:#b91c1c;
+}
+
+.footer{
+    margin-top:30px;
+    color:gray;
+}
+
+</style>
 </head>
+
 <body>
 
-<h1>Smart Complaint Management System</h1>
+<div class="container">
 
-<form id="complaintForm">
-    <input type="text" id="name" placeholder="Name"><br><br>
+    <h1>Smart Complaint Management System</h1>
 
-    <input type="text" id="category" placeholder="Category"><br><br>
+    <p>
+        Welcome to the Smart Complaint Management System.
+        Users can register complaints and track their status.
+        Administrators can monitor, update and resolve complaints efficiently.
+    </p>
 
-    <textarea id="description" placeholder="Description"></textarea><br><br>
+    <div class="button-container">
 
-    <button type="submit">Submit Complaint</button>
-</form>
+        <a href="/loginpage" class="btn user-btn">
+            👤 User Login
+        </a>
 
-<script>
-document.getElementById("complaintForm").addEventListener("submit", async function(e){
+        <a href="/adminlogin" class="btn admin-btn">
+            🔐 Admin Login
+        </a>
 
-    e.preventDefault();
+    </div>
 
-    await fetch("/complaints",{
-        method:"POST",
-        headers:{
-            "Content-Type":"application/json"
-        },
-        body:JSON.stringify({
-            name:document.getElementById("name").value,
-            category:document.getElementById("category").value,
-            description:document.getElementById("description").value
-        })
-    });
+    <div class="footer">
+        Complaint Tracking | Queue Management | Administration Portal
+    </div>
 
-    alert("Complaint Submitted");
-});
-</script>
+</div>
+
 </body>
 </html>
+```

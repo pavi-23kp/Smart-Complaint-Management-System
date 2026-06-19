@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Admin Login</title>
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Segoe UI',sans-serif;
+}
+
+body{
+    height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    background:linear-gradient(135deg,#0f172a,#1e3c72,#2563eb);
+}
+
+.container{
+    width:450px;
+    background:white;
+    padding:40px;
+    border-radius:20px;
+    box-shadow:0 10px 40px rgba(0,0,0,0.3);
+}
+
+.logo{
+    text-align:center;
+    margin-bottom:25px;
+}
+
+.logo h1{
+    color:#dc2626;
+    margin-bottom:10px;
+}
+
+.logo p{
+    color:gray;
+}
+
+.input-group{
+    margin-bottom:20px;
+}
+
+.input-group label{
+    display:block;
+    margin-bottom:8px;
+    font-weight:bold;
+}
+
+.input-group input{
+    width:100%;
+    padding:12px;
+    border:1px solid #ccc;
+    border-radius:8px;
+    font-size:15px;
+}
+
+.input-group input:focus{
+    outline:none;
+    border-color:#2563eb;
+}
+
+.btn{
+    width:100%;
+    padding:12px;
+    background:#dc2626;
+    color:white;
+    border:none;
+    border-radius:8px;
+    font-size:16px;
+    cursor:pointer;
+}
+
+.btn:hover{
+    background:#b91c1c;
+}
+
+.message{
+    margin-top:15px;
+    text-align:center;
+    font-weight:bold;
+}
+
+.home{
+    text-align:center;
+    margin-top:20px;
+}
+
+.home a{
+    text-decoration:none;
+    color:#2563eb;
+    font-weight:bold;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="container">
+
+    <div class="logo">
+        <h1>🔐 Admin Portal</h1>
+        <p>Authorized Users Only</p>
+    </div>
+
+    <form id="adminForm">
+
+        <div class="input-group">
+            <label>Admin Username</label>
+            <input
+                type="text"
+                id="username"
+                placeholder="Enter Admin Username"
+                required>
+        </div>
+
+        <div class="input-group">
+            <label>Admin Password</label>
+            <input
+                type="password"
+                id="password"
+                placeholder="Enter Admin Password"
+                required>
+        </div>
+
+        <button type="submit" class="btn">
+            Login
+        </button>
+
+    </form>
+
+    <div id="message" class="message"></div>
+
+    <div class="home">
+        <a href="/">🏠 Back to Home</a>
+    </div>
+
+</div>
+
+<script>
+
+document.getElementById("adminForm")
+.addEventListener("submit", function(e){
+
+    e.preventDefault();
+
+    let username =
+        document.getElementById("username").value;
+
+    let password =
+        document.getElementById("password").value;
+
+    if(
+        username === "admin" &&
+        password === "Admin@123"
+    ){
+        document.getElementById("message").innerHTML =
+            "✅ Admin Login Successful";
+
+        // Redirect to admin dashboard
+        // window.location.href = "/admindashboard";
+
+    }
+    else{
+
+        document.getElementById("message").innerHTML =
+            "❌ Invalid Admin Credentials";
+
+    }
+
+});
+
+</script>
+
+</body>
+</html>
+```

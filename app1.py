@@ -153,7 +153,10 @@ def users():
     conn.close()
 
     return jsonify(rows)
+from flask import session
 
+app = Flask(__name__)
+app.secret_key = "smart_complaint_secret"
 @app.route('/login', methods=['POST'])
 def login():
 
@@ -184,20 +187,34 @@ def login():
     })
 
 
-
-
-
-
-
-
 @app.route('/loginpage')
 def login_page():
     return render_template('login.html')
-
+@app.route('/adminlogin')
+def admin_login():
+    return render_template('admin_login.html')
 @app.route('/registerpage')
 def register_page():
     return render_template('register.html')
+@app.route('/admindashboard')
+def admin_dashboard():
+    return render_template('admin_dashboard.html')
 
+from flask import session, redirect
+
+@app.route('/dashboard')
+def dashboard():
+
+    if 'user' not in session:
+        return redirect('/loginpage')
+
+    return render_template('dashboard.html')
+@app.route('/logout')
+def logout():
+
+    session.clear()
+
+    return redirect('/loginpage')
 if __name__ == '__main__':
     app.run(debug=True)
     

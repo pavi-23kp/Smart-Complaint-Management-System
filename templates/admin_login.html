@@ -3,7 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Smart Complaint Management System</title>
+
+<title>Admin Login</title>
 
 <style>
 
@@ -11,7 +12,7 @@
     margin:0;
     padding:0;
     box-sizing:border-box;
-    font-family:Segoe UI, sans-serif;
+    font-family:'Segoe UI',sans-serif;
 }
 
 body{
@@ -19,15 +20,15 @@ body{
     display:flex;
     justify-content:center;
     align-items:center;
-    background:linear-gradient(135deg,#0f172a,#2563eb);
+    background:linear-gradient(135deg,#0f172a,#1e3c72,#2563eb);
 }
 
 .container{
-    width:420px;
+    width:450px;
     background:white;
     padding:40px;
-    border-radius:15px;
-    box-shadow:0 15px 35px rgba(0,0,0,0.25);
+    border-radius:20px;
+    box-shadow:0 10px 40px rgba(0,0,0,0.3);
 }
 
 .logo{
@@ -36,12 +37,12 @@ body{
 }
 
 .logo h1{
-    color:#2563eb;
-    margin-bottom:5px;
+    color:#dc2626;
+    margin-bottom:10px;
 }
 
 .logo p{
-    color:#666;
+    color:gray;
 }
 
 .input-group{
@@ -51,7 +52,7 @@ body{
 .input-group label{
     display:block;
     margin-bottom:8px;
-    font-weight:600;
+    font-weight:bold;
 }
 
 .input-group input{
@@ -70,7 +71,7 @@ body{
 .btn{
     width:100%;
     padding:12px;
-    background:#2563eb;
+    background:#dc2626;
     color:white;
     border:none;
     border-radius:8px;
@@ -79,49 +80,56 @@ body{
 }
 
 .btn:hover{
-    background:#1d4ed8;
+    background:#b91c1c;
 }
 
-.footer{
+.message{
+    margin-top:15px;
+    text-align:center;
+    font-weight:bold;
+}
+
+.home{
     text-align:center;
     margin-top:20px;
 }
 
-.footer a{
-    color:#2563eb;
+.home a{
     text-decoration:none;
+    color:#2563eb;
     font-weight:bold;
 }
 
 </style>
 
 </head>
+
 <body>
 
 <div class="container">
 
     <div class="logo">
-        <h1>Smart Complaint System</h1>
-        <p>User Login Portal</p>
+        <h1>🔐 Admin Portal</h1>
+        <p>Authorized Users Only</p>
     </div>
 
-    <form id="loginForm">
+    <form id="adminForm">
 
         <div class="input-group">
-            <label>Email Address</label>
+            <label>Admin Username</label>
             <input
-                type="default email_id"
-                id="email"
-                placeholder="Enter Email"
+                type="text"
+                id="username"
+                placeholder="Enter Admin Username"
                 required>
         </div>
 
         <div class="input-group">
-            <label>Password</label>
+            <label>Admin Password</label>
             <input
                 type="password"
                 id="password"
-                placeholder="Enter Password"
+                placeholder="Enter Admin Password"
                 required>
         </div>
 
@@ -131,42 +139,51 @@ body{
 
     </form>
 
-    <div class="footer">
-        New User?
-        <a href="/registerpage">Register Here</a>
+    <div id="message" class="message"></div>
+
+    <div class="home">
+        <a href="/">🏠 Back to Home</a>
     </div>
 
 </div>
 
 <script>
 
-document.getElementById("loginForm")
-.addEventListener("submit", async function(e){
+document.getElementById("adminForm")
+.addEventListener("submit", function(e){
 
     e.preventDefault();
 
-    const response = await fetch("/login",{
-        method:"POST",
-        headers:{
-            "Content-Type":"application/json"
-        },
-        body:JSON.stringify({
-            email:document.getElementById("email").value,
-            password:document.getElementById("password").value
-        })
-    });
+    let username =
+        document.getElementById("username").value;
 
-    const result = await response.json();
+    let password =
+        document.getElementById("password").value;
 
-    alert(result.message);
+if(
+    username === "admin" &&
+    password === "Admin@123"
+){
 
-    if(result.message==="Login Success"){
-        window.location.href="/";
+    alert("Admin Login Successful");
+
+    window.location.href="/admindashboard";
+
+
     }
+    else{
 
+        document.getElementById("message").innerHTML =
+            "❌ Invalid Admin Credentials";
+
+    }
+@app.route('/admindashboard')
+def admin_dashboard():
+    return render_template('admin_dashboard.html')
 });
-<a href="/logout">Logout</a>
+
 </script>
 
 </body>
 </html>
+``

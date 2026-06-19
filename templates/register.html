@@ -1,54 +1,195 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Smart Complaint Management System</title>
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Segoe UI',sans-serif;
+}
+
+body{
+    height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    background:linear-gradient(135deg,#0f172a,#2563eb,#38bdf8);
+}
+
+.container{
+    width:450px;
+    background:rgba(255,255,255,0.15);
+    backdrop-filter:blur(15px);
+    padding:40px;
+    border-radius:20px;
+    box-shadow:0 10px 30px rgba(0,0,0,0.3);
+    color:white;
+}
+
+.logo{
+    text-align:center;
+    margin-bottom:25px;
+}
+
+.logo h1{
+    font-size:28px;
+    margin-bottom:10px;
+}
+
+.logo p{
+    color:#e2e8f0;
+}
+
+.input-group{
+    margin-bottom:18px;
+}
+
+.input-group label{
+    display:block;
+    margin-bottom:8px;
+    font-weight:600;
+}
+
+.input-group input{
+    width:100%;
+    padding:12px;
+    border:none;
+    border-radius:10px;
+    font-size:15px;
+}
+
+.input-group input:focus{
+    outline:none;
+}
+
+.btn{
+    width:100%;
+    padding:12px;
+    background:#22c55e;
+    color:white;
+    border:none;
+    border-radius:10px;
+    font-size:16px;
+    cursor:pointer;
+    transition:0.3s;
+}
+
+.btn:hover{
+    background:#16a34a;
+}
+
+.links{
+    margin-top:20px;
+    text-align:center;
+}
+
+.links a{
+    color:white;
+    text-decoration:none;
+    font-weight:bold;
+}
+
+.links a:hover{
+    text-decoration:underline;
+}
+
+</style>
+</head>
+
 <body>
 
-<h1>User Registration</h1>
+<div class="container">
 
-<form id="registerForm">
+    <div class="logo">
+        <h1>📝 Smart Complaint System</h1>
+        <p>Create Your Account</p>
+    </div>
 
-<input type="text" id="username" placeholder="Username">
+    <form id="registerForm">
 
-<br><br>
+        <div class="input-group">
+            <label>👤 Username</label>
+            <input
+                type="text"
+                id="username"
+                placeholder="Enter Username"
+                required>
+        </div>
 
-<input type="email" id="email" placeholder="Email">
+        <div class="input-group">
+            <label>📧 Email Address</label>
+            <input
+                type="email"
+                id="email"
+                placeholder="Enter Email"
+                required>
+        </div>
 
-<br><br>
+        <div class="input-group">
+            <label>🔒 Password</label>
+            <input
+                type="password"
+                id="password"
+                placeholder="Enter Password"
+                required>
+        </div>
 
-<input type="password" id="password" placeholder="Password">
+        <button type="submit" class="btn">
+            Register
+        </button>
 
-<br><br>
+    </form>
 
-<button type="submit">
-Register
-</button>
+    <div class="links">
+        <br>
+        <a href="/">🏠 Home</a>
+        &nbsp;&nbsp;|&nbsp;&nbsp;
+        <a href="/loginpage">🔑 Login</a>
+    </div>
 
-</form>
+</div>
 
 <script>
 
 document.getElementById("registerForm")
 .addEventListener("submit", async function(e){
 
-e.preventDefault();
+    e.preventDefault();
 
-const response = await fetch("/register",{
+    const response = await fetch("/register", {
 
-method:"POST",
+        method: "POST",
 
-headers:{
-"Content-Type":"application/json"
-},
+        headers: {
+            "Content-Type": "application/json"
+        },
 
-body:JSON.stringify({
-username:document.getElementById("username").value,
-email:document.getElementById("email").value,
-password:document.getElementById("password").value
-})
-});
+        body: JSON.stringify({
+            username:
+                document.getElementById("username").value,
 
-const result = await response.json();
+            email:
+                document.getElementById("email").value,
 
-alert(result.message);
+            password:
+                document.getElementById("password").value
+        })
+    });
+
+    const result = await response.json();
+
+    alert(result.message);
+
+    if(result.message === "User Registered Successfully"){
+        window.location.href = "/loginpage";
+    }
 
 });
 
@@ -56,3 +197,4 @@ alert(result.message);
 
 </body>
 </html>
+
